@@ -8,11 +8,10 @@ import java.util.TreeSet;
 public class StudentManager {
 
     public static void main( String[] args ) {
-    	
+    
         header();
-
-
-		//Sort during insertion
+		
+        //Sort during insertion
 		TreeSet<Student> studentSet = new TreeSet<>(new Comparator<Student>() {
 			@Override
 			public int compare(Student o1, Student o2) {
@@ -21,8 +20,6 @@ public class StudentManager {
 			}
 		});
 		
-		
-        
         Scanner myObj = new Scanner(System.in);
         String actionKey = "";
         
@@ -61,7 +58,6 @@ public class StudentManager {
 				System.out.println( "Invalid Command, try again!" );
 				break;
 			}
-            
         }
         
         footer();
@@ -108,7 +104,6 @@ public class StudentManager {
 	    		updateType = myObj.next();
 	    	}
 	    	
-	    	
 	    	System.out.print( "What is the student ID: " );
 	    	int id = myObj.nextInt();
 	    	
@@ -126,6 +121,7 @@ public class StudentManager {
 	    				System.out.print( "What is the new name: " );
 	    				curr.setName( myObj.next());
 	    			}
+	    			
 	    			success("updated", curr.getName());
 	    			
 	    			return;
@@ -171,7 +167,6 @@ public class StudentManager {
     		System.out.printf(counter+ ". Name: "+ curr.getName()+"\tAge: "+curr.getAge()+"\tID:"+ curr.getID());
     		counter++;
     	}
-    	
 		System.out.println("\n____________________________________________\n\n" );
 	}
 
@@ -196,7 +191,6 @@ public class StudentManager {
     		System.out.println("Invalid inputs!");
     		return;
     	}
-    	
     }
     
 	// Success Message 
