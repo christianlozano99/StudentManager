@@ -11,8 +11,6 @@ import java.util.TreeSet;
 
 import com.hcl.Student.entity.Student;
 
-
-
 public class StudentManager {
 
     public static void main( String[] args ) throws IOException {
@@ -115,10 +113,8 @@ public class StudentManager {
     	System.out.print( "What is the student ID: " );
     	int id = myObj.nextInt();
     	
-    	for(Student curr: studentSet)
-    	{
-    		if(curr.getID() == id)
-    		{
+    	for(Student curr: studentSet) {
+    		if(curr.getID() == id) {
     			System.out.println("____________________________________________\n" );
         		System.out.println("Student information: " + curr.getName()
         		+"." +curr.getAge()+ ", " + curr.getID());
@@ -153,17 +149,13 @@ public class StudentManager {
 	    	System.out.print( "What is the student ID: " );
 	    	int id = myObj.nextInt();
 	    	
-	    	for(Student curr: studentSet)
-	    	{
-	    		if(curr.getID() == id)
-	    		{
-	    			if(updateType.equals("age"))
-	    			{
+	    	for(Student curr: studentSet) {
+	    		if(curr.getID() == id) {
+	    			if(updateType.equals("age")) {
 	    				System.out.print( "What is the new age: " );
 	    				curr.setAge( myObj.nextInt());
 	    			}
-	    			else if(updateType.equals("name"))
-	    			{
+	    			else if(updateType.equals("name")) {
 	    				System.out.print( "What is the new name: " );
 	    				curr.setName( myObj.next());
 	    			}
@@ -186,10 +178,8 @@ public class StudentManager {
 	    	System.out.println( "Input student's ID to delete:" );
 	    	int id = myObj.nextInt();
 	    	
-	    	for(Student curr: studentSet)
-	    	{
-	    		if(curr.getID() == id)
-	    		{
+	    	for(Student curr: studentSet) {
+	    		if(curr.getID() == id) {
 	    			studentSet.remove(curr);
 	    			success("removed", curr.getName());
 	        		
@@ -207,8 +197,7 @@ public class StudentManager {
 		// TODO Auto-generated method stub
     	int counter = 1;
     	System.out.println("____________________________________________");
-    	for(Student curr: studentSet)
-    	{
+    	for(Student curr: studentSet) {
     		System.out.println("");
     		System.out.printf(counter+ ". Name: "+ curr.getName()+"\tAge: "+curr.getAge()+"\tID:"+ curr.getID());
     		counter++;
