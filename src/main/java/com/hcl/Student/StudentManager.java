@@ -78,31 +78,31 @@ public class StudentManager {
 	private static void inputDataBack(Set<Student> studentSet, File file) throws IOException {
 		FileWriter fw = new FileWriter(file);
 
-        for(Student curr: studentSet) {
-        	String insertString = curr.getID() +"," + curr.getName() + "," + curr.getAge() +"\n";
-        	fw.write(insertString);
-        }
-        
-        fw.close();
+		for(Student curr: studentSet) {
+			String insertString = curr.getID() +"," + curr.getName() + "," + curr.getAge() +"\n";
+			fw.write(insertString);
+		}
+		
+		fw.close();
 	}
 
 	private static File extractFileInformation(Set<Student> studentSet) {
 		File file = new File("StoredInfo.txt");
-        try {
-            File myObj = new File("StoredInfo.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-              String data[] = myReader.nextLine().split(",");
-              int id = Integer.parseInt(data[0]);
-              String name = data[1];
-              int age = Integer.parseInt(data[2]);
-              studentSet.add(new Student(id, name, age));
-            }
-            myReader.close();
-          } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-          }
+		try {
+			File myObj = new File("StoredInfo.txt");
+			Scanner myReader = new Scanner(myObj);
+			while (myReader.hasNextLine()) {
+				String data[] = myReader.nextLine().split(",");
+				int id = Integer.parseInt(data[0]);
+				String name = data[1];
+				int age = Integer.parseInt(data[2]);
+				studentSet.add(new Student(id, name, age));
+			}
+			myReader.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
 		return file;
 	}
 
