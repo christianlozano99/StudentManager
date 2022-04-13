@@ -2,6 +2,7 @@ package com.hcl.Student;
 
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeSet;
 
 
@@ -12,13 +13,20 @@ public class StudentManager {
         header();
 		
         //Sort during insertion
-		TreeSet<Student> studentSet = new TreeSet<>(new Comparator<Student>() {
+        Set<Student> studentSet = new TreeSet<>(new Comparator<Student>() {
 			@Override
 			public int compare(Student o1, Student o2) {
 				// TODO Auto-generated method stub
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
+        
+        // Adding population
+        studentSet.add(new Student(1, "Vince", 25));
+        studentSet.add(new Student(2, "Penny", 24));
+        studentSet.add(new Student(3, "Phil", 26));
+        studentSet.add(new Student(4, "David", 23));
+        studentSet.add(new Student(5, "Jayce", 22));
 		
         Scanner myObj = new Scanner(System.in);
         String actionKey = "";
@@ -63,7 +71,7 @@ public class StudentManager {
     }
 
     // Searchs for studdent in given treeset
-    private static void searchStudent(TreeSet<Student> studentSet, Scanner myObj) {
+    private static void searchStudent(Set<Student> studentSet, Scanner myObj) {
 		// TODO Auto-generated method stub
     	System.out.print( "What is the student ID: " );
     	int id = myObj.nextInt();
@@ -91,7 +99,7 @@ public class StudentManager {
 	}
 
 	// Updates student data by ID
-	private static void updateStudent(TreeSet<Student> studentSet, Scanner myObj) {
+	private static void updateStudent(Set<Student> studentSet, Scanner myObj) {
 		// TODO Auto-generated method stub
     	try {
 	    	System.out.print( "Would you like to update age or name: " );
@@ -133,7 +141,7 @@ public class StudentManager {
 	}
 
 	// Deletes student data by ID
-	private static void deleteStudent(TreeSet<Student> studentSet, Scanner myObj) {
+	private static void deleteStudent(Set<Student> studentSet, Scanner myObj) {
 		// TODO Auto-generated method stub
     	try {
 	    	System.out.println( "Input student's ID to delete:" );
@@ -156,7 +164,7 @@ public class StudentManager {
 	}
 
 	//  Prints all students currently stored
-	private static void printAllStudents(TreeSet<Student> studentSet) {
+	private static void printAllStudents(Set<Student> studentSet) {
 		// TODO Auto-generated method stub
     	int counter = 1;
     	System.out.println("____________________________________________");
@@ -170,7 +178,7 @@ public class StudentManager {
 	}
 
 	// Inserts new student into the treeSet
-	private static void insertStudent(TreeSet<Student> studentSet, Scanner myObj) {
+	private static void insertStudent(Set<Student> studentSet, Scanner myObj) {
     	try {
     		System.out.print( "Input new student's name: " );
         	String name = myObj.next();
