@@ -1,4 +1,4 @@
-package com.hcl.Student;
+package com.hcl.Student.entity;
 
 /**
  * Hello world!
