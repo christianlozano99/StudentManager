@@ -19,9 +19,9 @@ public class StudentManager {
 		
         //Sort during insertion
         Set<Student> studentSet = new TreeSet<>(new Comparator<Student>() {
-			@Override
-			public int compare(Student o1, Student o2) {
-				// TODO Auto-generated method stub
+        	@Override
+        	public int compare(Student o1, Student o2) {
+			// TODO Auto-generated method stub
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
@@ -75,7 +75,7 @@ public class StudentManager {
         footer();
     }
 
-	private static void inputDataBack(Set<Student> studentSet, File file) throws IOException {
+    private static void inputDataBack(Set<Student> studentSet, File file) throws IOException {
 		FileWriter fw = new FileWriter(file);
 
 		for(Student curr: studentSet) {
