@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -13,7 +16,7 @@ import com.hcl.Student.entity.Student;
 
 public class StudentManager {
 
-    public static void main( String[] args ) throws IOException {
+    public static void main( String[] args ) throws IOException, ParseException {
     
         header();
 		
@@ -79,14 +82,15 @@ public class StudentManager {
 		FileWriter fw = new FileWriter(file);
 
 		for(Student curr: studentSet) {
-			String insertString = curr.getID() +"," + curr.getName() + "," + curr.getAge() +"\n";
+			String insertString = curr.getID() +"," + curr.getName() + "," +
+					curr.getAge() +","+curr.getDate() +"\n";
 			fw.write(insertString);
 		}
 		
 		fw.close();
 	}
 
-	private static File extractFileInformation(Set<Student> studentSet) {
+    private static File extractFileInformation(Set<Student> studentSet) throws ParseException {
 		File file = new File("StoredInfo.txt");
 		try {
 			File myObj = new File("StoredInfo.txt");
@@ -96,7 +100,8 @@ public class StudentManager {
 				int id = Integer.parseInt(data[0]);
 				String name = data[1];
 				int age = Integer.parseInt(data[2]);
-				studentSet.add(new Student(id, name, age));
+				String date = data[3];
+				studentSet.add(new Student(id, name, age, date));
 			}
 			myReader.close();
 		} catch (FileNotFoundException e) {
@@ -114,10 +119,10 @@ public class StudentManager {
     	
     	for(Student curr: studentSet) {
     		if(curr.getID() == id) {
-    			System.out.println("____________________________________________\n" );
-        		System.out.println("Student information: " + curr.getName()
-        		+"." +curr.getAge()+ ", " + curr.getID());
-        		System.out.println("____________________________________________\n" );
+    			System.out.println("_______________________________________________________________\n" );
+        		System.out.println("Student information: \nName: " + curr.getName()
+        		+"\nAge: " +curr.getAge()+ "\nID :" + curr.getID() + "\nDate Added: " + curr.getDate());
+        		System.out.println("_______________________________________________________________\n" );
     			return;
     		}
     	}
@@ -195,13 +200,14 @@ public class StudentManager {
 	private static void printAllStudents(Set<Student> studentSet) {
 		// TODO Auto-generated method stub
     	int counter = 1;
-    	System.out.println("____________________________________________");
+    	System.out.println("_________________________________________________________________");
     	for(Student curr: studentSet) {
     		System.out.println("");
-    		System.out.printf(counter+ ". Name: "+ curr.getName()+"\tAge: "+curr.getAge()+"\tID:"+ curr.getID());
+    		System.out.printf(counter+ ". Name: "+ curr.getName()+"\tAge: "+
+    		curr.getAge()+"\tID:"+ curr.getID()+ "\tDate Added: " + curr.getDate());
     		counter++;
     	}
-		System.out.println("\n____________________________________________\n\n" );
+		System.out.println("\n_________________________________________________________________\n\n" );
 	}
 
 	// Inserts new student into the treeSet
@@ -216,7 +222,9 @@ public class StudentManager {
     		System.out.print( "Input "+ name +"'s age: " );
     		int age = myObj.nextInt();
     		
-    		studentSet.add(new Student(id, name, age));
+    		SimpleDateFormat sdf = new SimpleDateFormat("M-dd-yyyy hh:mm:ss");
+    		Date date = new Date();
+    		studentSet.add(new Student(id, name, age, sdf.format(date)));
 
     		success("added", name);
 

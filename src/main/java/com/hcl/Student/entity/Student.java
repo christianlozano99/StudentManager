@@ -8,11 +8,13 @@ public class Student {
 	private int ID;
 	private String name;
 	private int age;
+	private String dateAdded;
 
-	public Student(int id, String name, int age) {
+	public Student(int id, String name, int age, String dateInString ) {
 		this.ID = id;
 		this.name = name;
 		this.age = age;
+		this.dateAdded = dateInString;
 	}
 
 	public int getID() {
@@ -33,6 +35,10 @@ public class Student {
 
 	public int getAge() {
 		return age;
+	}
+	
+	public String getDate() {
+		return dateAdded;
 	}
 
 	public void setAge(int age) {
