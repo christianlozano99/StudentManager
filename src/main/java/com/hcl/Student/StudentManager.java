@@ -78,8 +78,7 @@ public class StudentManager {
 	private static void inputDataBack(Set<Student> studentSet, File file) throws IOException {
 		FileWriter fw = new FileWriter(file);
 
-        for(Student curr: studentSet)
-        {
+        for(Student curr: studentSet) {
         	String insertString = curr.getID() +"," + curr.getName() + "," + curr.getAge() +"\n";
         	fw.write(insertString);
         }
