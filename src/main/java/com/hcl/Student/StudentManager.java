@@ -25,8 +25,7 @@ public class StudentManager {
         
         showCommands();
         
-        while(!(actionKey.equals("q")|| actionKey.equals("quit")))
-        {
+        while(!(actionKey.equals("q")|| actionKey.equals("quit"))) {
             System.out.print("\nEnter the next command: ");
 
             actionKey = myObj.next();
