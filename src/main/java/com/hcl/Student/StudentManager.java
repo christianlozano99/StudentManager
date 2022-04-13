@@ -1,5 +1,9 @@
 package com.hcl.Student;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Set;
@@ -8,7 +12,7 @@ import java.util.TreeSet;
 
 public class StudentManager {
 
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws IOException {
     
         header();
 		
@@ -21,12 +25,8 @@ public class StudentManager {
 			}
 		});
         
-        // Adding population
-        studentSet.add(new Student(1, "Vince", 25));
-        studentSet.add(new Student(2, "Penny", 24));
-        studentSet.add(new Student(3, "Phil", 26));
-        studentSet.add(new Student(4, "David", 23));
-        studentSet.add(new Student(5, "Jayce", 22));
+        //Extracts the information from the text file and inputs it into the set
+        File file = extractFileInformation(studentSet);
 		
         Scanner myObj = new Scanner(System.in);
         String actionKey = "";
@@ -67,8 +67,44 @@ public class StudentManager {
 			}
         }
         
+        // puts set into text file for next use
+        inputDataBack(studentSet, file);
+        
+        
         footer();
     }
+
+	private static void inputDataBack(Set<Student> studentSet, File file) throws IOException {
+		FileWriter fw = new FileWriter(file);
+
+        for(Student curr: studentSet)
+        {
+        	String insertString = curr.getID() +"," + curr.getName() + "," + curr.getAge() +"\n";
+        	fw.write(insertString);
+        }
+        
+        fw.close();
+	}
+
+	private static File extractFileInformation(Set<Student> studentSet) {
+		File file = new File("StoredInfo.txt");
+        try {
+            File myObj = new File("StoredInfo.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+              String data[] = myReader.nextLine().split(",");
+              int id = Integer.parseInt(data[0]);
+              String name = data[1];
+              int age = Integer.parseInt(data[2]);
+              studentSet.add(new Student(id, name, age));
+            }
+            myReader.close();
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+		return file;
+	}
 
     // Searchs for studdent in given treeset
     private static void searchStudent(Set<Student> studentSet, Scanner myObj) {
@@ -228,7 +264,7 @@ public class StudentManager {
 		
 		System.out.println("'showall' \nDescription: Shows all existing students\n");
 		
-		System.out.println("'q' or 'quit' \nDescription: exits the application\n");
+		System.out.println("'q' or 'quit' \nDescription: Saves and exits the application\n");
 
 	}
 
