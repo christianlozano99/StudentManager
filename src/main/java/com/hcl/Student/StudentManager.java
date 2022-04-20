@@ -73,11 +73,12 @@ public class StudentManager {
         	String jdbcUsername = "root";
         	String jdbcPassword = "";
         	connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        	return connection;
         } catch (SQLException e) {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
         }
-        return connection;
+        return null;
     }
 
     // Gets Average age from DB ages
